@@ -1,0 +1,22 @@
+<fieldset>
+    <legend>Change the users roles</legend>
+    <form class="needs-validation" novalidate (ngSubmit)="changeRole(changeRoleForm)" #changeRoleForm="ngForm"
+        autocomplete="off">
+
+        <!-- {{users | json}} -->
+        <select id="allusers" (change)="changeIdRoles($event.target)" ngModel name="username">
+            <option *ngFor="let user of users" value="{{user._id}}">{{user.email}}</option>
+        </select>
+
+        <!-- <input type="text" [value]="currentrole" [ngModel]="currentrole" name="currentrole" disabled> -->
+        <input type="text" *ngIf="user$ | async as products">
+        <input type="text" ngModel value="{{currentrole}}" name="currentrole" disabled>
+        <!-- (ngModelChange)="changeIdRoles($event)"  -->
+        <select id="roles" [ngModel]="selectedDevice" name="newrole">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+
+        <button>Submit</button>
+    </form>
+</fieldset>

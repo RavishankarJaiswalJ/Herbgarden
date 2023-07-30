@@ -1,0 +1,31 @@
+<h1>{{title}}</h1>
+<h3 class="bg-primary text-center text-white p-2">
+    {{userName}}'s Event List'
+    <h6 class="mt-1"> {{itemCount }}  Items</h6>
+</h3>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="column">
+     <input class="form-control" placeholder="Enter task here" #eventText/>       
+        </div>
+        <button class="btn btn-primary" (click)="addItem(eventText.value)">Add</button>
+    </div>
+</div>
+
+
+<table   *ngIf="eventItems.length " class="table table-bordered table-striped">
+    <thead><tr><th>#</th><th>Description</th><th>Done</th></tr></thead>
+    <tbody>
+        <tr *ngFor="let item of eventItems; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{item.task}}</td>
+            <td><input type="checkbox"  [(ngModel)]="item.complete"/></td>
+            <td [ngSwitch]="item.complete">
+                <span *ngSwitchCase="true">Yes</span>
+                <span *ngSwitchCase="false">No</span>
+                <span *ngSwitchDefault>Not known</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
